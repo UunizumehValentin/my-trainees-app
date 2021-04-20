@@ -3,15 +3,17 @@ const router = express.Router();
 const {
   createTrainee,
   getAllTrainees,
-  getSingleTrainee, updateTrainee, deleteTrainee
+  getSingleTrainee,
+  updateTrainee,
+  deleteTrainee,
 } = require("../controllers/traineeController");
-const protect=require("../middlewares/authMiddleware")
+// const protect = require("../middlewares/authMiddleware");
 
-router.route("/").post(protect,createTrainee).get(protect,getAllTrainees);
+router.route("/").post(createTrainee).get(getAllTrainees);
 router
   .route("/:_id")
-  .get(protect,getSingleTrainee)
-  .put(protect,updateTrainee)
-  .delete(protect,deleteTrainee);
+  .get(getSingleTrainee)
+  .put(updateTrainee)
+  .delete(deleteTrainee);
 
 module.exports = router;
