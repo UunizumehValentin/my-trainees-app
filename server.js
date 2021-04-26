@@ -2,7 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const connectDB = require("./config/connectDB");
-const traineesRoute = require("./routes/traineesRoute");
+const studentsRoute = require("./routes/studentsRoute");
 const usersRoute = require("./routes/usersRoute");
 const cors = require("cors");
 
@@ -19,12 +19,12 @@ app.use(morgan("dev"));
 app.use(cors());
 
 // routes
-app.use("/api/v1/trainees", traineesRoute);
+app.use("/api/v1/students", studentsRoute);
 app.use("/api/v1/users", usersRoute);
 
 // home route
 app.get("/", (req, res) => {
-  res.send("<h1>welcome to our trainees API</h1>");
+  res.send("<h1>welcome to our students API</h1>");
 });
 
 const port = process.env.PORT || 5000;
