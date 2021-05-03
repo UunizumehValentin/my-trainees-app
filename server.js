@@ -5,26 +5,27 @@ const connectDB = require("./config/connectDB");
 const studentsRoute = require("./routes/studentsRoute");
 const usersRoute = require("./routes/usersRoute");
 const cors = require("cors");
+const { urlencoded } = require("express");
 
 dotenv.config();
 
 const app = express();
 
-// connection
 connectDB();
 
-// middlewares
+//middlewares
 app.use(express.json());
-app.use(morgan("dev"));
+app.use(urlencoded({ extended: true }));
 app.use(cors());
+app.use(morgan("dev"));
 
-// routes
-app.use("/api/v1/students", studentsRoute);
-app.use("/api/v1/users", usersRoute);
+//routes
+app.use("/api/v2/students", studentsRoute);
+app.use("/api/v2/users", usersRoute);
 
-// home route
+//home route
 app.get("/", (req, res) => {
-  res.send("<h1>welcome to our students API</h1>");
+  res.send("<h1>Welcome to my students exeat API <h1>");
 });
 
 const port = process.env.PORT || 5000;
